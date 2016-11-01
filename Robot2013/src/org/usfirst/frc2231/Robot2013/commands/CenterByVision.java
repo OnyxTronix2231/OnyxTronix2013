@@ -11,15 +11,10 @@
 
 package org.usfirst.frc2231.Robot2013.commands;
 
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.image.NIVisionException;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
-import org.usfirst.frc2231.Robot2013.subsystems.Shooter;
-
+import FRC_Vision2016_newMethods_ft_team2231.*;
 /**
  *
  */
@@ -53,24 +48,23 @@ public class CenterByVision extends Command {
     protected void initialize() {
     	if(!Robot.vision.isProcessing()){
     		Robot.vision.startProcessing();
-        	Thread t = new Thread(Robot.vision.new VisionPID());
-        	t.start();
     	}
-    	RobotMap.VisionFirstLeftPIDController.enable();
-    	RobotMap.VisionFirstRightPIDController.enable();
-    	RobotMap.VisionSecondRightPIDController.enable();
-    	RobotMap.VisionSecondLeftPIDController.enable();
-    	Robot.vision.setPIDSourceType(PIDSourceType.kRate);
+    	RobotMap.visionSensor.setPIDVisionSourceType(PIDVisionSourceType.DistanceFromCenter);
     	RobotMap.VisionFirstLeftPIDController.setSetpoint(m_setpoint);
     	RobotMap.VisionSecondLeftPIDController.setSetpoint(m_setpoint);
     	RobotMap.VisionFirstRightPIDController.setSetpoint(m_setpoint);
     	RobotMap.VisionSecondRightPIDController.setSetpoint(m_setpoint);
-    	Robot.shooter.setReady(false);
-    	Robot.vision.refreshValues();
+    	
+    	RobotMap.VisionFirstLeftPIDController.enable();
+    	RobotMap.VisionFirstRightPIDController.enable();
+    	RobotMap.VisionSecondRightPIDController.enable();
+    	RobotMap.VisionSecondLeftPIDController.enable();
+    	//Robot.vision.setPIDSourceType(PIDSourceType.kRate);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	RobotMap.visionSensor.refreshValues();
 		System.out.println("Error: " + RobotMap.VisionFirstRightPIDController.getError());
 
       /*
@@ -107,10 +101,12 @@ public class CenterByVision extends Command {
     		return true;
     	}
     	*/
+    	/*
     	if(Math.abs(RobotMap.VisionFirstRightPIDController.getError()) < TOLERANCE){
     		System.out.println("On target: " + RobotMap.VisionFirstRightPIDController.getError());
     		return true;
     	}
+    	*/
     	return false;
     }
 
@@ -121,7 +117,6 @@ public class CenterByVision extends Command {
 		RobotMap.VisionFirstRightPIDController.disable();
 		RobotMap.VisionSecondLeftPIDController.disable();
 		RobotMap.VisionSecondRightPIDController.disable();
-		Robot.shooter.setReady(true);
 		System.out.println("centered by vision");
     }
 

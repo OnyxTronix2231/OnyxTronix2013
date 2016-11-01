@@ -19,6 +19,8 @@ public class StaticMembers {
 	public static final double VISION_P = 0.07;
 	public static final double VISION_I = 0.0;
 	public static final double VISION_D = 0.03;
+	public static final double VISION_SETPOINT = 0;
+
 	
 	//Robot Ratios
 	public static final double ROBOT_RADIUS = 35;

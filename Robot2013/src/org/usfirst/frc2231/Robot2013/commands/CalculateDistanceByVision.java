@@ -11,14 +11,9 @@
 
 package org.usfirst.frc2231.Robot2013.commands;
 
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc2231.Robot2013.Robot;
-import org.usfirst.frc2231.Robot2013.RobotMap;
-import org.usfirst.frc2231.Robot2013.StaticMembers;
-import org.usfirst.frc2231.Robot2013.StickButtons.Buttons;
-import org.usfirst.frc2231.Robot2013.subsystems.Vision.VisionPID;
 
 /**
  *
@@ -43,13 +38,8 @@ public class CalculateDistanceByVision extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!Robot.vision.isProcessing()){
-    		Robot.vision.startProcessing();
-        	Thread t = new Thread(Robot.vision.new VisionPID());
-        	t.start();
-    	}
-    	Robot.vision.setPIDSourceType(PIDSourceType.kDisplacement);
-    	Robot.vision.setPIDSourceType(PIDSourceType.kDisplacement);
+    	//Robot.vision.setPIDSourceType(PIDSourceType.kDisplacement);
+    	//Robot.vision.setPIDSourceType(PIDSourceType.kDisplacement);
 
     }
 
@@ -59,9 +49,10 @@ public class CalculateDistanceByVision extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	long tEnd = System.currentTimeMillis();
-		long tDelta = tEnd - Robot.vision.lastDistanceRefresh;
-        return tDelta / 1000.0 < 1;
+    	//long tEnd = System.currentTimeMillis();
+		//long tDelta = tEnd - Robot.vision.lastDistanceRefresh;
+       // return tDelta / 1000.0 < 1;
+    	return false;
     }
 
     // Called once after isFinished returns true
