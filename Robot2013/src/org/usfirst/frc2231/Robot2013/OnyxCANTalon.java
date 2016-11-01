@@ -8,6 +8,11 @@ public class OnyxCANTalon extends CANTalon {
 	private double absoluteTolerance;
 	private double distancePerPulse;
 
+	public OnyxCANTalon(int deviceNumber) {
+		super(deviceNumber);
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean isOnTarget() {
 		if (Math.abs(super.get() - super.getSetpoint()) <= absoluteTolerance
 				|| Math.abs(super.get() / super.getSetpoint() - 1) <= precentTolerance)
@@ -38,11 +43,6 @@ public class OnyxCANTalon extends CANTalon {
 
 	public void setAbsoluteTolerance(double absoluteTolerance) {
 		this.absoluteTolerance = absoluteTolerance;
-	}
-
-	public OnyxCANTalon(int deviceNumber) {
-		super(deviceNumber);
-		// TODO Auto-generated constructor stub
 	}
 
 	public double getDistancePerPulse() {
