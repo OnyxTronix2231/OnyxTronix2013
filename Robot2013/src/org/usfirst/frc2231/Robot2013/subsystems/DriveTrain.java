@@ -75,7 +75,7 @@ public class DriveTrain extends Subsystem {
     }
     
 	//FirstRight,FirstLeft,SecondLeft talons will follow SecondRight talon which is the only talon that is connected to an encoder right now.
-    public void changereasonControlModeToFollow(){ // TODO: Add encoder
+    public void changeControlModeToFollow(){ // TODO: Add encoder
     	firstRight.changeControlMode(TalonControlMode.Follower);
     	firstLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);
