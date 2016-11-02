@@ -19,8 +19,10 @@ import org.usfirst.frc2231.Robot2013.commands.*;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -63,6 +65,20 @@ public class DriveTrain extends Subsystem {
 				StaticMembers.DIRECTION_VALUE * stick.getRawAxis(1),
 				-StaticMembers.DIRECTION_VALUE * stick.getRawAxis(4));
 	}
+    
+	//FirstRight,FirstLeft,SecondLeft talons will follow SecondRight talon which is the only talon that is connected to an encoder right now.
+    public void changeToFollowMode(){
+    	firstRight.changeControlMode(TalonControlMode.Follower);
+    	firstLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);
+    	firstRight.set(RobotMap.driveTrainSecondRight.getDeviceID());
+    	firstLeft.set(RobotMap.driveTrainSecondRight.getDeviceID());
+    	secondRight.set(RobotMap.driveTrainSecondRight.getDeviceID()); 
+    }
+    
+    public void setEncodersPIDSourceType(PIDSourceType sourceType){
+    	secondLeft.setPIDSourceType(sourceType);
+    }
     
 	public void driveByDirection(double degrees) {
 

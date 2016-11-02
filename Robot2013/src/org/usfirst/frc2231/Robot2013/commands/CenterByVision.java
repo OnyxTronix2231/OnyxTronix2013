@@ -20,9 +20,9 @@ import FRC_Vision2016_newMethods_ft_team2231.*;
  */
 public class CenterByVision extends Command {
 
-	private static final int EXTENDED_TOLERANCE_RANGE = 60;
-	private static final double MINIMUM_SPEED = 0.1;
-	private static final double TOLERANCE = 3;
+	//private static final int EXTENDED_TOLERANCE_RANGE = 60;
+	//private static final double MINIMUM_SPEED = 0.1;
+	//private static final double TOLERANCE = 3;
 	public double currentAreaRatio;
 	public double lastAreaRatio;
 	final double ratioSensetivity = 0.8;
@@ -49,23 +49,16 @@ public class CenterByVision extends Command {
     	if(!Robot.vision.isProcessing()){
     		Robot.vision.startProcessing();
     	}
+    	Robot.vision.setInvertedTalons(true);
     	RobotMap.visionSensor.setPIDVisionSourceType(PIDVisionSourceType.DistanceFromCenter);
-    	RobotMap.VisionFirstLeftPIDController.setSetpoint(m_setpoint);
-    	RobotMap.VisionSecondLeftPIDController.setSetpoint(m_setpoint);
-    	RobotMap.VisionFirstRightPIDController.setSetpoint(m_setpoint);
-    	RobotMap.VisionSecondRightPIDController.setSetpoint(m_setpoint);
-    	
-    	RobotMap.VisionFirstLeftPIDController.enable();
-    	RobotMap.VisionFirstRightPIDController.enable();
-    	RobotMap.VisionSecondRightPIDController.enable();
-    	RobotMap.VisionSecondLeftPIDController.enable();
-    	//Robot.vision.setPIDSourceType(PIDSourceType.kRate);
+    	RobotMap.VisionPIDController.setSetpoint(m_setpoint);
+    	RobotMap.VisionPIDController.enable();	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	RobotMap.visionSensor.refreshValues();
-		System.out.println("Error: " + RobotMap.VisionFirstRightPIDController.getError());
+		System.out.println("Vision error: " + RobotMap.VisionPIDController.getError());
 
       /*
     	double startingSpeed = SmartDashboard.getNumber("PID OutputRange: ");
@@ -90,6 +83,7 @@ public class CenterByVision extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	return RobotMap.VisionPIDController.onTarget();
     	/*
     	System.out.println("Left Vision Controller: current value: " + Robot.vision.getDistanceFromCenter() + ", difference: " + RobotMap.VisionLeftPIDController.getError() + ", is on target: " + RobotMap.VisionLeftPIDController.onTarget());
     	System.out.println("Right Vision Controller: current value: " + Robot.vision.getDistanceFromCenter() + ", difference: " + RobotMap.VisionRightPIDController.getError() + ", is on target: " + RobotMap.VisionRightPIDController.onTarget());
@@ -107,16 +101,13 @@ public class CenterByVision extends Command {
     		return true;
     	}
     	*/
-    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
 		Robot.vision.stopProcessing();
-		RobotMap.VisionFirstLeftPIDController.disable();
-		RobotMap.VisionFirstRightPIDController.disable();
-		RobotMap.VisionSecondLeftPIDController.disable();
-		RobotMap.VisionSecondRightPIDController.disable();
+		RobotMap.VisionPIDController.disable();
+    	Robot.vision.setInvertedTalons(false);
 		System.out.println("centered by vision");
     }
 
@@ -124,9 +115,8 @@ public class CenterByVision extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
 		Robot.vision.stopProcessing();
-		RobotMap.VisionFirstLeftPIDController.disable();
-		RobotMap.VisionFirstRightPIDController.disable();
-		RobotMap.VisionSecondLeftPIDController.disable();
-		RobotMap.VisionSecondRightPIDController.disable();
+		RobotMap.VisionPIDController.disable();
+    	Robot.vision.setInvertedTalons(false);
+		System.out.println("center by vision has been interrupted");
     }
 }

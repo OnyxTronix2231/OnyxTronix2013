@@ -11,9 +11,8 @@
 
 package org.usfirst.frc2231.Robot2013.subsystems;
 
-import org.usfirst.frc2231.Robot2013.OnyxCANTalon;
 import org.usfirst.frc2231.Robot2013.RobotMap;
-import org.usfirst.frc2231.Robot2013.commands.*;
+import org.usfirst.frc2231.Robot2013.commands.PitchWithJoystick;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;

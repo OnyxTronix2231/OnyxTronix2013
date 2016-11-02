@@ -12,14 +12,14 @@ public class StaticMembers {
 	public static final double OUT_PUT_RANGE_MAX = 0.4;
 	public static final double OUT_PUT_RANGE_MIN = -0.4;
 	
-	public static final double ROBOTDRIVE_P = 0.07;
-	public static final double ROBOTDRIVE_I = 0.0;
-	public static final double ROBOTDRIVE_D = 0.03;
+	public static double DriveP = 0.07;
+	public static double DriveI = 0.0;
+	public static double DriveD = 0.03;
 	
-	public static final double VISION_P = 0.07;
-	public static final double VISION_I = 0.0;
-	public static final double VISION_D = 0.03;
-	public static final double VISION_SETPOINT = 0;
+	public static double visionP = 0.07;
+	public static double visionI = 0.0;
+	public static double visionD = 0.03;
+	public static double visionSetPoint = 0;
 
 	
 	//Robot Ratios

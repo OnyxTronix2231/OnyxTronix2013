@@ -11,11 +11,15 @@
 
 package org.usfirst.frc2231.Robot2013;
 
-import org.usfirst.frc2231.Robot2013.commands.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc2231.Robot2013.commands.AutonomousCommand;
+import org.usfirst.frc2231.Robot2013.commands.DriveByDistance;
+import org.usfirst.frc2231.Robot2013.commands.DriveWithJoystick;
+import org.usfirst.frc2231.Robot2013.commands.PitchWithJoystick;
+import org.usfirst.frc2231.Robot2013.commands.ShootAtSpeed;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.*;
-import org.usfirst.frc2231.Robot2013.subsystems.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**

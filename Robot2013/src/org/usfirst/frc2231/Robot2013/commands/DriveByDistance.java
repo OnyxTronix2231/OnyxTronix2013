@@ -11,7 +11,7 @@
 
 package org.usfirst.frc2231.Robot2013.commands;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc2231.Robot2013.Robot;
@@ -43,19 +43,17 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.driveTrainSecondRight.changeControlMode(TalonControlMode.Position);
+    	Robot.driveTrain.setPIDSourceType(PIDSourceType.kRate);
+    	Robot.driveTrain.changeControlModeToFollow();
     	
-    	RobotMap.driveTrainFirstLeftPIDController.setSetpoint(m_setPoint);
-    	RobotMap.driveTrainFirstLeftPIDController.enable();
+    	/*
+    	 * //TODO: add encoder
+    	RobotMap.driveTrainLeftPIDController.setSetpoint(m_setPoint);
+    	RobotMap.driveTrainLeftPIDController.enable();
+    	*/ 	
     	
-    	RobotMap.driveTrainSecondLeftPIDController.setSetpoint(m_setPoint);
-    	RobotMap.driveTrainSecondLeftPIDController.enable();
-    	
-    	RobotMap.driveTrainFirstRightPIDController.setSetpoint(m_setPoint);
-    	RobotMap.driveTrainFirstRightPIDController.enable();
-    	
-    	RobotMap.driveTrainSecondRightPIDController.setSetpoint(m_setPoint);
-    	RobotMap.driveTrainSecondRightPIDController.enable();
+    	RobotMap.driveTrainRightPIDController.setSetpoint(m_setPoint);
+    	RobotMap.driveTrainRightPIDController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -64,16 +62,15 @@ public class DriveByDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return 	RobotMap.driveTrainFirstLeftPIDController.onTarget() &&  RobotMap.driveTrainSecondLeftPIDController.onTarget() &&
-        		RobotMap.driveTrainFirstRightPIDController.onTarget() &&  RobotMap.driveTrainSecondRightPIDController.onTarget();
+        return 	RobotMap.driveTrainLeftPIDController.onTarget() &&
+        		RobotMap.driveTrainRightPIDController.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.driveTrainFirstLeftPIDController.disable();
-    	RobotMap.driveTrainSecondLeftPIDController.disable();
-    	RobotMap.driveTrainFirstRightPIDController.disable();
-    	RobotMap.driveTrainSecondRightPIDController.disable();
+    	RobotMap.driveTrainLeftPIDController.disable();
+    	RobotMap.driveTrainRightPIDController.disable();
+    	Robot.driveTrain.resetTalonControlMode();
     }
 
     // Called when another command which requires one or more of the same
