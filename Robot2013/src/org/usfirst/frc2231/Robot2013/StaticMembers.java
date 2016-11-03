@@ -21,7 +21,8 @@ public class StaticMembers {
 	public static double visionD = 0.03;
 	public static double visionSetPoint = 0;
 
-	
+	public static final double ANGLE_TO_FLOUR = 90-52.0;
+
 	//Robot Ratios
 	public static final double ROBOT_RADIUS = 35;
 	public static final double WHEEL_RADIUS = 3;

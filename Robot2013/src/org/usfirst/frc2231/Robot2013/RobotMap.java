@@ -136,12 +136,13 @@ public class RobotMap {
         
         /********************************* Vision PID *********************************/
         
-        visionSensor = new VisionSensor(shooterCamera, Robot.vision.getAngleToFloor());
+        visionSensor = new VisionSensor(shooterCamera, StaticMembers.ANGLE_TO_FLOUR);
 
         VisionPIDController = new PIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstLeft);
         LiveWindow.addActuator("Vision", "LeftPIDController", VisionPIDController);
         VisionPIDController.setContinuous(false);
         VisionPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE);
         VisionPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
+    	
     }
 }

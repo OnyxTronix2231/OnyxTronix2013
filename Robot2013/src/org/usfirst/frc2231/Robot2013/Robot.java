@@ -113,7 +113,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putString("Shooter: ", shooter.getCurrentCommand().toString());
         
         RobotMap.driveTrainRightPIDController.setPID(SmartDashboard.getNumber("PID DriveP: "),
         		 SmartDashboard.getNumber("PID DriveI: "),
