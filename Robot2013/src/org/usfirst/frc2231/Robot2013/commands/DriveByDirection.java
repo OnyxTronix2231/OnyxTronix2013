@@ -42,12 +42,6 @@ public class DriveByDirection extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	int POV = Robot.oi.getdriveStick().getPOV(); 
-    	if(POV == 0) {
-    		Robot.driveTrain.driveByStraightPOVValue(DRIVE_VALUE);
-    	} else if(POV == 180) {
-    		Robot.driveTrain.driveByStraightPOVValue(DRIVE_VALUE);
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

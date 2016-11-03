@@ -43,11 +43,11 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.setPIDSourceType(PIDSourceType.kRate);
+    	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
     	Robot.driveTrain.changeControlModeToFollow();
     	
     	/*
-    	 * //TODO: add encoder
+    	 * //TODO: Add encoder
     	RobotMap.driveTrainLeftPIDController.setSetpoint(m_setPoint);
     	RobotMap.driveTrainLeftPIDController.enable();
     	*/ 	

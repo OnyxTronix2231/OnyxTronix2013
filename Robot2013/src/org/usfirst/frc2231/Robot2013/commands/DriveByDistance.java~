@@ -11,8 +11,6 @@
 
 package org.usfirst.frc2231.Robot2013.commands;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-import edu.wpi.first.wpilibj.PIDController.Tolerance;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -45,10 +43,11 @@ public class DriveByDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.setEncodersPIDSourceType(PIDSourceType.kRate);
-    	Robot.driveTrain.changeToFollowMode();
+    	Robot.driveTrain.setPIDSourceType(PIDSourceType.kDisplacement);
+    	Robot.driveTrain.changeControlModeToFollow();
     	
     	/*
+    	 * //TODO: add encoder
     	RobotMap.driveTrainLeftPIDController.setSetpoint(m_setPoint);
     	RobotMap.driveTrainLeftPIDController.enable();
     	*/ 	
@@ -71,6 +70,7 @@ public class DriveByDistance extends Command {
     protected void end() {
     	RobotMap.driveTrainLeftPIDController.disable();
     	RobotMap.driveTrainRightPIDController.disable();
+    	Robot.driveTrain.resetTalonControlMode();
     }
 
     // Called when another command which requires one or more of the same

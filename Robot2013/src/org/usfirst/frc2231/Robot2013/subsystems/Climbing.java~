@@ -12,10 +12,9 @@
 package org.usfirst.frc2231.Robot2013.subsystems;
 
 import org.usfirst.frc2231.Robot2013.RobotMap;
-import org.usfirst.frc2231.Robot2013.commands.*;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

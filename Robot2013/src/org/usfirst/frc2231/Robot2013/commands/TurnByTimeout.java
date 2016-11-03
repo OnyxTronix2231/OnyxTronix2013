@@ -12,7 +12,9 @@
 package org.usfirst.frc2231.Robot2013.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc2231.Robot2013.Robot;
+import org.usfirst.frc2231.Robot2013.RobotMap;
 
 /**
  *
@@ -55,13 +57,13 @@ public class TurnByTimeout extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.driveByStraightPOVValue(-1);
+    	RobotMap.driveTrainRobotDrive4.stopMotor();
     	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.driveByStraightPOVValue(-1);
+    	end();
     }
 }

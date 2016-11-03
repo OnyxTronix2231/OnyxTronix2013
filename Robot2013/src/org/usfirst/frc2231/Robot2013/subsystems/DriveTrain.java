@@ -75,14 +75,15 @@ public class DriveTrain extends Subsystem {
     }
     
 	//FirstRight,FirstLeft,SecondLeft talons will follow SecondRight talon which is the only talon that is connected to an encoder right now.
-    public void changeControlModeToFollow(){ // TODO: Add encoder
-    	firstRight.changeControlMode(TalonControlMode.Follower);
-    	firstLeft.changeControlMode(TalonControlMode.Follower);
-    	secondRight.changeControlMode(TalonControlMode.Follower);
-    	firstRight.set(RobotMap.driveTrainSecondRight.getDeviceID());
-    	firstLeft.set(RobotMap.driveTrainSecondRight.getDeviceID());
-    	secondRight.set(RobotMap.driveTrainSecondRight.getDeviceID()); 
-    }
+    public void changeControlModeToFollow(){
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);    	
+    	firstLeft.changeControlMode(TalonControlMode.Follower);// TODO : Remove Line when there are 2 encoders
+    	
+    	secondLeft.set(firstRight.getDeviceID()); // TODO : When there are 2 encoders change to firstLeft.getDeviceID()
+    	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.set(firstRight.getDeviceID()); // TODO : Remove Line when there are 2 encoders
+   }
     
     public void setPIDSourceType(PIDSourceType sourceType){ // TODO: Add encoder
     	secondLeft.setPIDSourceType(sourceType);
@@ -120,12 +121,6 @@ public class DriveTrain extends Subsystem {
 			return true;
 		}
 		return false;
-	}
-	
-	public void driveByStraightPOVValue(double value) {
-		int POV = Robot.oi.getdriveStick().getPOV();
-		double moveValue = POV == -1 ? 0 : POV / 90 -1;  
-		robotDrive4.arcadeDrive(moveValue , 0);
 	}
 	
 	public boolean isStable(){

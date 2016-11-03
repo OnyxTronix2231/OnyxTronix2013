@@ -21,6 +21,7 @@ public class StaticMembers {
 	public static double visionD = 0.03;
 	public static double visionSetPoint = 0;
 
+	//Vision
 	public static final double ANGLE_TO_FLOUR = 90-52.0;
 
 	//Robot Ratios

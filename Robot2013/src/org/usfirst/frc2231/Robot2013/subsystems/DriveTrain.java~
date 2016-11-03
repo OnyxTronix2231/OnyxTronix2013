@@ -66,17 +66,26 @@ public class DriveTrain extends Subsystem {
 				-StaticMembers.DIRECTION_VALUE * stick.getRawAxis(4));
 	}
     
-	//FirstRight,FirstLeft,SecondLeft talons will follow SecondRight talon which is the only talon that is connected to an encoder right now.
-    public void changeToFollowMode(){
-    	firstRight.changeControlMode(TalonControlMode.Follower);
-    	firstLeft.changeControlMode(TalonControlMode.Follower);
-    	secondRight.changeControlMode(TalonControlMode.Follower);
-    	firstRight.set(RobotMap.driveTrainSecondRight.getDeviceID());
-    	firstLeft.set(RobotMap.driveTrainSecondRight.getDeviceID());
-    	secondRight.set(RobotMap.driveTrainSecondRight.getDeviceID()); 
+    public void resetTalonControlMode(){
+    	firstLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	secondLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	firstRight.changeControlMode(TalonControlMode.PercentVbus);
+    	secondRight.changeControlMode(TalonControlMode.PercentVbus);
+
     }
     
-    public void setEncodersPIDSourceType(PIDSourceType sourceType){
+	//FirstRight,FirstLeft,SecondLeft talons will follow SecondRight talon which is the only talon that is connected to an encoder right now.
+    public void changeControlModeToFollow(){ // TODO: Add encoder
+    	secondLeft.changeControlMode(TalonControlMode.Follower);
+    	secondRight.changeControlMode(TalonControlMode.Follower);    	
+    	firstLeft.changeControlMode(TalonControlMode.Follower);// TODO : Remove Line when there are 2 encoders
+    	
+    	secondLeft.set(firstRight.getDeviceID()); // TODO : When there are 2 encoders change to firstLeft
+    	secondRight.set(firstRight.getDeviceID());
+    	firstLeft.set(firstRight.getDeviceID()); // TODO : Remove Line when there are 2 encoders
+   }
+    
+    public void setPIDSourceType(PIDSourceType sourceType){ // TODO: Add encoder
     	secondLeft.setPIDSourceType(sourceType);
     }
     
