@@ -13,7 +13,9 @@
 package org.usfirst.frc2231.Robot2013.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc2231.Robot2013.Robot;
+import org.usfirst.frc2231.Robot2013.RobotMap;
 
 
 /**
@@ -38,7 +40,6 @@ public class DriveWithJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.arcadeDrive(Robot.oi.getdriveStick());
-//    	Robot.driveTrain.driveByDirection(Robot.oi.getdriveStick().getPOV());
     }
 
     // Make this return true when this Command no longer needs to run execute()

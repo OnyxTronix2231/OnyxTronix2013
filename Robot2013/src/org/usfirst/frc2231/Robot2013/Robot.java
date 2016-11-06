@@ -118,7 +118,10 @@ public class Robot extends IterativeRobot {
         		 SmartDashboard.getNumber("PID DriveI: "),
 				 SmartDashboard.getNumber("PID DriveD: "));
         //RobotMap.driveTrainLeftPIDController.setPID(p, i, d); //TODO: add encoder
-        RobotMap.VisionPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
+        RobotMap.VisionLeftPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
+				 SmartDashboard.getNumber("PID visionI: "),
+				 SmartDashboard.getNumber("PID visionD: "));
+        RobotMap.VisionRightPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
 				 SmartDashboard.getNumber("PID visionI: "),
 				 SmartDashboard.getNumber("PID visionD: "));
     }

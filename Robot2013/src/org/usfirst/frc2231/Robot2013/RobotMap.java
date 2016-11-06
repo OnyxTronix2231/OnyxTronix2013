@@ -56,8 +56,11 @@ public class RobotMap {
     public static AxisCamera shooterCamera;
     public static USBCamera driveCamera;
     public static ADXRS450_Gyro visionGyro;
+    public static PIDController shooterPIDController;
 	// Vision PIDControllers
-	public static PIDController VisionPIDController;
+	public static PIDController VisionLeftPIDController;
+	public static PIDController VisionRightPIDController;
+
 	// DriveTrain PIDControllers
 	public static PIDController driveTrainLeftPIDController;
 	public static PIDController driveTrainRightPIDController;
@@ -80,18 +83,20 @@ public class RobotMap {
         driveTrainRobotDrive4 = new RobotDrive(driveTrainFirstLeft, driveTrainSecondLeft,
               driveTrainFirstRight, driveTrainSecondRight);
         
-        driveTrainRobotDrive4.setSafetyEnabled(true);
+        driveTrainRobotDrive4.setSafetyEnabled(false);
         driveTrainRobotDrive4.setExpiration(0.1);
-        driveTrainRobotDrive4.setSensitivity(0.5);
+        driveTrainRobotDrive4.setSensitivity(0.2);
         driveTrainRobotDrive4.setMaxOutput(1.0);
 
+        driveTrainRobotDrive4.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        driveTrainRobotDrive4.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         driveTrainrotationGyro = new AnalogGyro(1);
         LiveWindow.addSensor("DriveTrain", "rotationGyro", driveTrainrotationGyro);
         driveTrainrotationGyro.setSensitivity(0.007);
         shooterPitchPotentiometer = new AnalogPotentiometer(0, 1.0, 0.0);
         LiveWindow.addSensor("Shooter", "PitchPotentiometer", shooterPitchPotentiometer);
         
-        shooterTriggerSolenoid = new DoubleSolenoid(0, 4, 5);
+        shooterTriggerSolenoid = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("Shooter", "TriggerSolenoid", shooterTriggerSolenoid);
         
         shooterAimingMotor = new CANTalon(11);
@@ -100,7 +105,7 @@ public class RobotMap {
         shooterShootingWheel = new CANTalon(4);
         LiveWindow.addActuator("Shooter", "ShootingWheel", shooterShootingWheel);
         
-        climbingRightSolenoid = new DoubleSolenoid(0, 0, 1);
+        climbingRightSolenoid = new DoubleSolenoid(0, 4, 5);
         LiveWindow.addActuator("Climbing", "RightSolenoid", climbingRightSolenoid);
         
         climbingLeftSolenoid = new DoubleSolenoid(0, 2, 3);
@@ -116,8 +121,15 @@ public class RobotMap {
         
         shooterCamera = new AxisCamera("10.22.31.12");
         shooterCamera.writeResolution(Resolution.k640x480);
+
+        /********************************* Shooter PID *********************************/
+        shooterPIDController = new PIDController(StaticMembers.ShooterP, StaticMembers.ShooterI, StaticMembers.ShooterD, shooterShootingWheel, shooterShootingWheel);
+        LiveWindow.addActuator("Shooter", "PIDController", shooterPIDController);
+        shooterPIDController.setContinuous(false);
+        shooterPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE);
+        shooterPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
         
-        /********************************* Drive PID *********************************/
+        /********************************* DriveTrain PID *********************************/
        
         /*
          * //TODO: add encoder
@@ -138,11 +150,16 @@ public class RobotMap {
         
         visionSensor = new VisionSensor(shooterCamera, StaticMembers.ANGLE_TO_FLOUR);
 
-        VisionPIDController = new PIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstLeft);
-        LiveWindow.addActuator("Vision", "LeftPIDController", VisionPIDController);
-        VisionPIDController.setContinuous(false);
-        VisionPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE);
-        VisionPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
+        VisionLeftPIDController = new PIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstLeft);
+        LiveWindow.addActuator("Vision", "LeftPIDController", VisionLeftPIDController);
+        VisionLeftPIDController.setContinuous(false);
+        VisionLeftPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE);
+        VisionLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
     	
+        VisionRightPIDController = new PIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstRight);
+        LiveWindow.addActuator("Vision", "RightPIDController", VisionRightPIDController);
+        VisionRightPIDController.setContinuous(false);
+        VisionRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE);
+        VisionRightPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
     }
 }
