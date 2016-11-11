@@ -62,8 +62,8 @@ public class DriveTrain extends Subsystem {
     
     public void arcadeDrive(Joystick stick) {
 		robotDrive4.arcadeDrive(
-				-stick.getRawAxis(1) / 1.3,
-				stick.getRawAxis(4) / 1.3);
+				-stick.getRawAxis(1),
+				stick.getRawAxis(4));
 	}
     
     public void resetTalonControlMode(){

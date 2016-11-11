@@ -9,8 +9,8 @@ public class StaticMembers {
 	public static final double ABSOLUTE_TOLERANCE = 3;
 	public static final double PERCENT_TOLERANCE = 10;	
 	
-	public static final double OUT_PUT_RANGE_MAX = 0.5;
-	public static final double OUT_PUT_RANGE_MIN = -0.5;
+	public static final double OUT_PUT_RANGE_MAX = 0.9;
+	public static final double OUT_PUT_RANGE_MIN = -0.9;
 	
 	public static double DriveP = 0.07;
 	public static double DriveI = 0.0;
@@ -20,9 +20,9 @@ public class StaticMembers {
 	public static double ShooterI = 0.0;
 	public static double ShooterD = 0.03;
 	
-	public static double visionP = 0.07;
-	public static double visionI = 0.0;
-	public static double visionD = 0.03;
+	public static double visionP = 0.03;
+	public static double visionI = 0.001;
+	public static double visionD = 0.0;
 	public static double visionSetPoint = 0;
 
 	//Vision
