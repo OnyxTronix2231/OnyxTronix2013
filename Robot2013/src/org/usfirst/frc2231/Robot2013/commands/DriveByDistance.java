@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
+import org.usfirst.frc2231.Robot2013.StaticMembers;
 
 /**
  *
@@ -63,7 +64,7 @@ public class DriveByDistance extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return 	//RobotMap.driveTrainLeftPIDController.onTarget() && //TODO: Use when there are two encoders.
-        		RobotMap.driveTrainRightPIDController.onTarget();
+        		RobotMap.driveTrainRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE);
     }
 
     // Called once after isFinished returns true

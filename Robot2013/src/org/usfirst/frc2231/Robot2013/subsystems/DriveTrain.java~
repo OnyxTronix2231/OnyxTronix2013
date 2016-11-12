@@ -11,18 +11,17 @@
 
 package org.usfirst.frc2231.Robot2013.subsystems;
 
-import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.StaticMembers;
-import org.usfirst.frc2231.Robot2013.commands.*;
+import org.usfirst.frc2231.Robot2013.commands.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -89,13 +88,32 @@ public class DriveTrain extends Subsystem {
     	secondLeft.setPIDSourceType(sourceType);
     }
     
-	public void driveByDirection(double degrees) {
-
-		if (degrees != StaticMembers.DEFAULT_POV_VALUE) {
-			double move = getMove(degrees);
-			double rotate = getRotate(degrees);
-			robotDrive4.arcadeDrive(rotate, move);
+    public void changeTalonControlModeRotate(TalonControlMode mode) {
+		secondLeft.changeControlMode(mode);
+		secondRight.changeControlMode(mode);
+		
+		if(mode == TalonControlMode.Follower){
+		secondLeft.set(firstLeft.getDeviceID());
+		secondRight.set(firstRight.getDeviceID());
 		}
+	}
+	
+	public void changeTalonControlModeForward(TalonControlMode mode) {
+		secondLeft.changeControlMode(mode);
+		secondRight.changeControlMode(mode);
+		firstRight.changeControlMode(mode);
+		
+		if(mode == TalonControlMode.Follower){
+		secondLeft.set(firstLeft.getDeviceID());
+		secondRight.set(firstLeft.getDeviceID());
+		firstRight.set(firstLeft.getDeviceID());
+
+		}
+	}
+	
+	//Because three talons follows one talon, one side of the robot drive needs to be inverted so the robot will be able to rotate.
+	public void setTalonsReversedState(boolean isReversed){
+		firstRight.setInverted(isReversed);
 	}
 	
 	public double getMove(double degrees) {

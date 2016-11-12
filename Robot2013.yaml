@@ -279,22 +279,6 @@ Children:
         value: *id003
     Base: Subsystem
     Name: Climbing
-  - Children: []
-    Properties:
-      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Default command parameters
-        validators: null
-        value: []
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
-      Constants: !!robotbuilder.data.properties.ConstantsProperty
-        default: []
-        name: Constants
-        validators: null
-        value: []
-    Base: Subsystem
-    Name: Vision
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -592,6 +576,24 @@ Children:
         validators: null
         value: []
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id017 []
+        name: Parameter presets
+        validators: null
+        value: *id017
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: AutonomousCommand
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Climbing}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
         default: []
@@ -626,33 +628,15 @@ Children:
         default: []
         name: Parameters
         validators: null
-        value: []
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
-      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id017 []
-        name: Parameter presets
-        validators: null
-        value: *id017
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: false}
-    Base: Command
-    Name: StopShootByVision
-  - Children: []
-    Properties:
-      Parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Parameters
-        validators: null
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: setPoint, type: double}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Vision}
+        name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id018 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id018
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
@@ -697,24 +681,6 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: ShootByVision
-  - Children: []
-    Properties:
-      Parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Parameters
-        validators: null
-        value: []
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
-      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: []
-        name: Parameter presets
-        validators: null
-        value: []
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: Autonomous Command
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -776,28 +742,10 @@ Children:
         default: []
         name: Parameters
         validators: null
-        value: []
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: DriveTrain}
-      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: []
-        name: Parameter presets
-        validators: null
-        value: []
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: DisableDriveWithJoystick
-  - Children: []
-    Properties:
-      Parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Parameters
-        validators: null
         value:
         - !!robotbuilder.data.properties.ParameterDescriptor {name: setPoint, type: double}
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Vision}
+        name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
         default: []
         name: Parameter presets
@@ -807,24 +755,6 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: CenterByVision
-  - Children: []
-    Properties:
-      Parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Parameters
-        validators: null
-        value: []
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Vision}
-      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: []
-        name: Parameter presets
-        validators: null
-        value: []
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: DriveToTarget
   Properties: {}
   Base: Commands
   Name: Commands
