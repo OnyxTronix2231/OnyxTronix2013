@@ -57,7 +57,7 @@ public class Vision extends Subsystem {
 		this.isProcessing = false;
 	}
 	
-	public void changeTalonControlMode(TalonControlMode mode) {
+	public void changeTalonControlModeRotate(TalonControlMode mode) {
 		secondLeft.changeControlMode(mode);
 		secondRight.changeControlMode(mode);
 		
@@ -67,10 +67,21 @@ public class Vision extends Subsystem {
 		}
 	}
 	
+	public void changeTalonControlModeForward(TalonControlMode mode) {
+		secondLeft.changeControlMode(mode);
+		secondRight.changeControlMode(mode);
+		firstRight.changeControlMode(mode);
+		
+		if(mode == TalonControlMode.Follower){
+		secondLeft.set(firstLeft.getDeviceID());
+		secondRight.set(firstLeft.getDeviceID());
+		firstRight.set(firstLeft.getDeviceID());
+
+		}
+	}
+	
 	//Because three talons follows one talon, one side of the robot drive needs to be inverted so the robot will be able to rotate.
 	public void setTalonsReversedState(boolean isReversed){
-		//secondLeft.reverseOutput(isReversed);
-		//secondRight.reverseOutput(isReversed);
 		firstRight.setInverted(isReversed);
 	}
 	

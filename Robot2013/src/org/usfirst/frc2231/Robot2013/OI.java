@@ -21,6 +21,7 @@ import org.usfirst.frc2231.Robot2013.commands.DriveByDistance;
 import org.usfirst.frc2231.Robot2013.commands.DriveToTarget;
 import org.usfirst.frc2231.Robot2013.commands.DriveWithJoystick;
 import org.usfirst.frc2231.Robot2013.commands.PitchWithJoystick;
+import org.usfirst.frc2231.Robot2013.commands.ShootByVision;
 import org.usfirst.frc2231.Robot2013.commands.SpinAtSpeed;
 import org.usfirst.frc2231.Robot2013.commands.StartCompressor;
 import org.usfirst.frc2231.Robot2013.commands.StopCompressor;
@@ -84,7 +85,7 @@ public class OI {
         stopComp = new JoystickButton(buttonStick, 7);
         stopComp.whileHeld(new StopCompressor());
         centerOnTarget = new JoystickButton(buttonStick, 4);
-        centerOnTarget.whenPressed(new CenterByVision(0));
+        centerOnTarget.whenPressed(new ShootByVision());
         shoot = new JoystickButton(buttonStick, 1);
         shoot.whileHeld(new SpinAtSpeed(1));
         startComp = new JoystickButton(buttonStick, 8);

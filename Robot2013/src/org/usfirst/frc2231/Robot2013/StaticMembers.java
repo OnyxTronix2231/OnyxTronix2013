@@ -9,8 +9,8 @@ public class StaticMembers {
 	public static final double ABSOLUTE_TOLERANCE = 3;
 	public static final double PERCENT_TOLERANCE = 10;	
 	
-	public static final double OUT_PUT_RANGE_MAX = 0.9;
-	public static final double OUT_PUT_RANGE_MIN = -0.9;
+	public static final double OUT_PUT_RANGE_MAX = 0.7;
+	public static final double OUT_PUT_RANGE_MIN = -0.7;
 	
 	public static double DriveP = 0.07;
 	public static double DriveI = 0.0;
@@ -26,7 +26,7 @@ public class StaticMembers {
 	public static double visionSetPoint = 0;
 
 	//Vision
-	public static final double ANGLE_TO_FLOUR = 90-52.0;
+	public static final double ANGLE_TO_FLOUR = 90-28;
 
 	//Robot Ratios
 	public static final double ROBOT_RADIUS = 35;
