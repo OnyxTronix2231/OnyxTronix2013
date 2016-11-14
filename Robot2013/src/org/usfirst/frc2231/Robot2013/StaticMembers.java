@@ -20,9 +20,9 @@ public class StaticMembers {
 	public static double ShooterI = 0.0;
 	public static double ShooterD = 0.03;
 	
-	public static double visionP = 0.03;
-	public static double visionI = 0.001;
-	public static double visionD = 0.0;
+	public static double visionP = 0.001;
+	public static double visionI = 0.002;
+	public static double visionD = 0.100;
 	public static double visionSetPoint = 0;
 
 	//Vision

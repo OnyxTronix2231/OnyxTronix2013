@@ -88,7 +88,7 @@ public class DriveTrain extends Subsystem {
     	secondLeft.setPIDSourceType(sourceType);
     }
     
-    public void changeTalonControlModeRotate(TalonControlMode mode) {
+    public void changeTalonControlModeToRotate(TalonControlMode mode) {
 		secondLeft.changeControlMode(mode);
 		secondRight.changeControlMode(mode);
 		

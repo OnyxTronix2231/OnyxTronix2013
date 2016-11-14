@@ -13,7 +13,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: &id002 [CANID]
-            value: '1'
+            value: '0'
         Base: CAN Talon
         Name: FirstLeft
       - Children: []
@@ -23,7 +23,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: *id002
-            value: '0'
+            value: '1'
         Base: CAN Talon
         Name: SecondLeft
       - Children: []
@@ -33,7 +33,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: *id002
-            value: '3'
+            value: '2'
         Base: CAN Talon
         Name: FirstRight
       - Children: []
@@ -43,7 +43,7 @@ Children:
             default: '2'
             name: CAN ID
             validators: *id002
-            value: '2'
+            value: '3'
         Base: CAN Talon
         Name: SecondRight
       Properties:
@@ -578,10 +578,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id017 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id017
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
