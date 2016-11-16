@@ -74,7 +74,7 @@ Children:
           validators: [RobotDrive4, ChildDropdownSelected]
           value: DriveTrain SecondLeft
         Right Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Right Rear Motor Inverted, validators: null, value: true}
+          default: false, name: Right Rear Motor Inverted, validators: null, value: false}
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
         Left Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
@@ -422,7 +422,7 @@ Children:
           validators: null
           value:
           - !!robotbuilder.data.properties.ValuedParameterDescriptor {name: speed,
-            type: double, value: '1'}
+            type: double, value: '0'}
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id012
           default: '1'
@@ -434,7 +434,7 @@ Children:
           name: Command
           type: Command
           validators: *id013
-          value: SpinAtSpeed
+          value: ShootBySpeed
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id014
           default: whileHeld
@@ -659,7 +659,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
-    Name: SpinAtSpeed
+    Name: ShootBySpeed
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty

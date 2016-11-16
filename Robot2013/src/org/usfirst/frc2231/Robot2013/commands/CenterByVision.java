@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.StaticMembers;
+import org.usfirst.frc2231.Robot2013.StickButtons;
 
 import FRC_Vision2016_newMethods_ft_team2231.*;
 /**
@@ -70,8 +71,8 @@ public class CenterByVision extends Command {
     protected boolean isFinished() {
 		System.out.println("Vision error: " + RobotMap.VisionLeftPIDController.getError() +  " , " + RobotMap.VisionRightPIDController.getError());
 		System.out.println("vision, pidcontroller output: " + RobotMap.VisionLeftPIDController.get() + " , " + RobotMap.VisionRightPIDController.get());		
-    	return RobotMap.VisionLeftPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE) &&
-    			RobotMap.VisionRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE);    	
+		return RobotMap.VisionLeftPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION) &&
+    			RobotMap.VisionRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);    	
     
     }
 

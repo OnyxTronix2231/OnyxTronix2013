@@ -64,7 +64,7 @@ public class DriveByDistance extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return 	//RobotMap.driveTrainLeftPIDController.onTarget() && //TODO: Use when there are two encoders.
-        		RobotMap.driveTrainRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE);
+        		RobotMap.driveTrainRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
     }
 
     // Called once after isFinished returns true

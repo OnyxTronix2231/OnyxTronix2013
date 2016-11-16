@@ -55,6 +55,7 @@ public class DriveForwardByVision extends Command {
 	protected void initialize() {
 		RobotMap.visionSensor.refreshValues();
 		RobotMap.visionSensor.setPIDVisionSourceType(PIDVisionSourceType.DistanceFromTarget);
+		RobotMap.driveTrainFirstLeft.setInverted(true);
 		Robot.driveTrain.changeTalonControlModeForward(TalonControlMode.Follower);
 		RobotMap.VisionLeftPIDController.setSetpoint(m_setPoint);
 		RobotMap.VisionLeftPIDController.enable();
@@ -64,18 +65,20 @@ public class DriveForwardByVision extends Command {
 	protected void execute() {
 		RobotMap.visionSensor.refreshValues();
 		System.out.println("Vision, pid Get" + RobotMap.visionSensor.pidGet());
+		System.out.println("Vision, pid out put" + RobotMap.VisionLeftPIDController.get());
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return RobotMap.VisionLeftPIDController.getError() >= Math.abs(StaticMembers.ABSOLUTE_TOLERANCE);
+		return RobotMap.VisionLeftPIDController.onTarget(Math.abs(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE));
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.driveTrain.changeTalonControlModeForward(TalonControlMode.PercentVbus);
 		System.out.println("On target");
+		RobotMap.driveTrainFirstLeft.setInverted(false);
 		RobotMap.VisionLeftPIDController.reset();
 		RobotMap.VisionLeftPIDController.disable();
 
