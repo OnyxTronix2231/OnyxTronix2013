@@ -74,7 +74,7 @@ Children:
           validators: [RobotDrive4, ChildDropdownSelected]
           value: DriveTrain SecondLeft
         Right Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Right Rear Motor Inverted, validators: null, value: false}
+          default: false, name: Right Rear Motor Inverted, validators: null, value: true}
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
         Left Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
@@ -178,7 +178,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '4'
+          value: '6'
       Base: CAN Talon
       Name: ShootingWheel
     Properties:
@@ -755,6 +755,24 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: CenterByVision
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Shooter}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: &id017 []
+        name: Parameter presets
+        validators: null
+        value: *id017
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: ShootAtMaxSpeed
   Properties: {}
   Base: Commands
   Name: Commands

@@ -13,7 +13,7 @@ public class StaticMembers {
 	
 	//PID Parameters
 	public static final double DISTANCE_PER_PULSE = 0.5;
-	public static final double ABSOLUTE_TOLERANCE_ROTATION =  20 / 1000.0;
+	public static final double ABSOLUTE_TOLERANCE_ROTATION =  10 / 1000.0;
 	public static final double ABSOLUTE_TOLERANCE_DISTANCE = 0.05;
 	public static final double PERCENT_TOLERANCE = 10;		
 	public static final double OUT_PUT_RANGE_MAX = 0.7;
@@ -31,9 +31,9 @@ public class StaticMembers {
 	public static final double ANGLE_TO_FLOUR = 28;
 	public static final double TARGET_HIEGHT = 1.24;
 	public static final double ROBOT_HIEGHT = 0.38;
-	public static double visionP = 0.001;
-	public static double visionI = 0.002;
-	public static double visionD = 0.100;
+	public static double visionP = 3.000;
+	public static double visionI = 0.100;
+	public static double visionD = 3.000;
 	public static double visionSetPoint = 0;
 		
 	//Shooter
