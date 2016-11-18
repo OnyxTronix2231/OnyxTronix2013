@@ -48,6 +48,7 @@ public class CenterByVision extends Command {
     	RobotMap.visionSensor.setPIDVisionSourceType(PIDVisionSourceType.NormalizedDistanceFromCenter);
     	RobotMap.visionSensor.refreshValues();
     	RobotMap.VisionLeftPIDController.setSetpoint(m_setpoint);
+    	RobotMap.VisionLeftPIDController.enableWriting();
     	RobotMap.VisionLeftPIDController.enable();	
     	RobotMap.VisionRightPIDController.setSetpoint(m_setpoint);
     	RobotMap.VisionRightPIDController.enable();	
@@ -61,8 +62,9 @@ public class CenterByVision extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-		return RobotMap.VisionLeftPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION) &&
-    			RobotMap.VisionRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);    	
+    	boolean isLeftOnTarget = RobotMap.VisionLeftPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+    	boolean isRightOnTarget = RobotMap.VisionRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+		return isLeftOnTarget && isRightOnTarget;    	
     
     }
 
@@ -75,6 +77,7 @@ public class CenterByVision extends Command {
 		RobotMap.VisionLeftPIDController.disable();
 		RobotMap.VisionRightPIDController.disable();
     	Robot.driveTrain.resetTalonControlMode();
+    	RobotMap.VisionLeftPIDController.disableWriting();
 		System.out.println("centered by vision");
     }
 
@@ -86,6 +89,7 @@ public class CenterByVision extends Command {
 		RobotMap.VisionLeftPIDController.disable();
 		RobotMap.VisionRightPIDController.disable();
     	Robot.driveTrain.resetTalonControlMode();
+    	RobotMap.VisionLeftPIDController.disableWriting();
     	System.out.println("center by vision has been interrupted");
     }
 }

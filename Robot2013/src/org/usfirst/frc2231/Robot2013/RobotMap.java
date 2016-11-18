@@ -102,7 +102,7 @@ public class RobotMap {
         shooterAimingMotor = new CANTalon(11);
         LiveWindow.addActuator("Shooter", "AimingMotor", shooterAimingMotor);
         
-        shooterShootingWheel = new CANTalon(4);
+        shooterShootingWheel = new CANTalon(5);
         LiveWindow.addActuator("Shooter", "ShootingWheel", shooterShootingWheel);
         
         climbingRightSolenoid = new DoubleSolenoid(0, 4, 5);
@@ -155,7 +155,7 @@ public class RobotMap {
         VisionLeftPIDController.setContinuous(false);
         VisionLeftPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
         VisionLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
-    	
+        
         VisionRightPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstRight);
         LiveWindow.addActuator("Vision", "RightPIDController", VisionRightPIDController);
         VisionRightPIDController.setContinuous(false);

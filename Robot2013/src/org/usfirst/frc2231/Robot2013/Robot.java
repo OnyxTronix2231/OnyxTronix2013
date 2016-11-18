@@ -122,6 +122,8 @@ public class Robot extends IterativeRobot {
         RobotMap.VisionRightPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
 				 SmartDashboard.getNumber("PID visionI: "),
 				 SmartDashboard.getNumber("PID visionD: "));
+        
+        SmartDashboard.putString("Shooter command: " ,  shooter.getCurrentCommand().toString());
     }
 
     /**

@@ -11,10 +11,12 @@
 
 package org.usfirst.frc2231.Robot2013;
 
+import org.usfirst.frc2231.Robot2013.commands.ActivateTrigger;
 import org.usfirst.frc2231.Robot2013.commands.AutonomousCommand;
 import org.usfirst.frc2231.Robot2013.commands.ChangeBothHands;
 import org.usfirst.frc2231.Robot2013.commands.ChangeLeftHand;
 import org.usfirst.frc2231.Robot2013.commands.ChangeRightHand;
+import org.usfirst.frc2231.Robot2013.commands.ActivateTrigger;
 import org.usfirst.frc2231.Robot2013.commands.DriveWithJoystick;
 import org.usfirst.frc2231.Robot2013.commands.PitchWithJoystick;
 import org.usfirst.frc2231.Robot2013.commands.ShootAtMaxSpeed;
@@ -68,6 +70,7 @@ public class OI {
     public JoystickButton changeRightHand;
     public JoystickButton changeBothHands;
     public JoystickButton startComp;
+    public JoystickButton activeTrigger;
     public JoystickButton shoot;
     public JoystickButton centerOnTarget;
     public JoystickButton stopComp;
@@ -84,8 +87,10 @@ public class OI {
         stopComp.whileHeld(new StopCompressor());
         centerOnTarget = new JoystickButton(buttonStick, 4);
         centerOnTarget.whenPressed(new ShootByVision());
-        shoot = new JoystickButton(buttonStick, 1);
-        shoot.whileHeld(new ShootBySpeed(0));
+        shoot = new JoystickButton(buttonStick, 5);
+        shoot.whileHeld(new ShootAtMaxSpeed());
+        activeTrigger = new JoystickButton(buttonStick, 6);
+        activeTrigger.whenPressed(new ActivateTrigger(1));
         startComp = new JoystickButton(buttonStick, 8);
         startComp.whileHeld(new StartCompressor());
         changeBothHands = new JoystickButton(buttonStick, 1);
