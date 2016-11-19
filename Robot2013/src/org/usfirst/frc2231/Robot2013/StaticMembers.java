@@ -31,9 +31,10 @@ public class StaticMembers {
 	public static final double ANGLE_TO_FLOUR = 28;
 	public static final double TARGET_HIEGHT = 1.24;
 	public static final double ROBOT_HIEGHT = 0.38;
-	public static double visionP = 3.000;
-	public static double visionI = 0.200;
-	public static double visionD = 20.000;
+	public static double visionP = 2.000;
+	public static double visionI = 0.000;
+	public static double visionD = 10.000;
+	public static double visionF = 0.20;
 	public static double visionSetPoint = -0.032;
 		
 	//Shooter
