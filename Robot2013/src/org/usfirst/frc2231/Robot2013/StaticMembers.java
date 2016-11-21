@@ -16,8 +16,8 @@ public class StaticMembers {
 	public static final double ABSOLUTE_TOLERANCE_ROTATION =  10 / 1000.0;
 	public static final double ABSOLUTE_TOLERANCE_DISTANCE = 0.05;
 	public static final double PERCENT_TOLERANCE = 10;		
-	public static final double OUT_PUT_RANGE_MAX = 0.7;
-	public static final double OUT_PUT_RANGE_MIN = -0.7;
+	public static final double OUT_PUT_RANGE_MAX = 0.4;
+	public static final double OUT_PUT_RANGE_MIN = -0.4;
 
 	//RobotDrive
 	public static final int DEFAULT_POV_VALUE = -1;
@@ -33,7 +33,7 @@ public class StaticMembers {
 	public static final double ROBOT_HIEGHT = 0.38;
 	public static double visionP = 2.000;
 	public static double visionI = 0.000;
-	public static double visionD = 10.000;
+	public static double visionD = 5.000;
 	public static double visionF = 0.20;
 	public static double visionSetPoint = -0.032;
 		

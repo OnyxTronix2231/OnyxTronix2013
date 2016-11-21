@@ -140,7 +140,7 @@ public class RobotMap {
         driveTrainLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
         */
         
-        driveTrainRightPIDController = new OnyxTronixPIDController(StaticMembers.DriveP, StaticMembers.DriveI,StaticMembers.DriveD, driveTrainFirstRight, driveTrainFirstRight);
+        driveTrainRightPIDController = new OnyxTronixPIDController(StaticMembers.DriveP, StaticMembers.DriveI,StaticMembers.DriveD, StaticMembers.visionF, driveTrainFirstRight, driveTrainFirstRight);
         LiveWindow.addActuator("DriveTran", "SecondRightPIDController", driveTrainRightPIDController);
         driveTrainRightPIDController.setContinuous(false);
         driveTrainRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
@@ -150,13 +150,13 @@ public class RobotMap {
         
         visionSensor = new VisionSensor(shooterCamera, StaticMembers.ANGLE_TO_FLOUR, StaticMembers.ROBOT_HIEGHT, StaticMembers.TARGET_HIEGHT);
 
-        VisionLeftPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstLeft);
+        VisionLeftPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstLeft);
         LiveWindow.addActuator("Vision", "LeftPIDController", VisionLeftPIDController);
         VisionLeftPIDController.setContinuous(false);
         VisionLeftPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
         VisionLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
         
-        VisionRightPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, visionSensor, driveTrainFirstRight);
+        VisionRightPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstRight);
         LiveWindow.addActuator("Vision", "RightPIDController", VisionRightPIDController);
         VisionRightPIDController.setContinuous(false);
         VisionRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);

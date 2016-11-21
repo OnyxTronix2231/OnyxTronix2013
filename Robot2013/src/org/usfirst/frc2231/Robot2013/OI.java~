@@ -73,7 +73,6 @@ public class OI {
     public JoystickButton startComp;
     public JoystickButton activeTrigger;
     public JoystickButton shoot;
-    public JoystickButton centerOnTarget;
     public JoystickButton stopComp;
     public JoystickButton shootByVision;
     public Joystick buttonStick;
@@ -85,15 +84,13 @@ public class OI {
 
         buttonStick = new Joystick(1);
         
-        shootByVision = new JoystickButton(buttonStick, 9);
+        shootByVision = new JoystickButton(buttonStick, 6);
         shootByVision.whenPressed(new ShootByVision());
         stopComp = new JoystickButton(buttonStick, 7);
         stopComp.whileHeld(new StopCompressor());
-        centerOnTarget = new JoystickButton(buttonStick, 4);
-        centerOnTarget.whenPressed(new CenterByVision(-0.032));
         shoot = new JoystickButton(buttonStick, 5);
         shoot.whenPressed(new ShootAtMaxSpeed(5));
-        activeTrigger = new JoystickButton(buttonStick, 6);
+        activeTrigger = new JoystickButton(buttonStick, 10);
         activeTrigger.whenPressed(new ActivateTrigger(1));
         startComp = new JoystickButton(buttonStick, 8);
         startComp.whileHeld(new StartCompressor());
