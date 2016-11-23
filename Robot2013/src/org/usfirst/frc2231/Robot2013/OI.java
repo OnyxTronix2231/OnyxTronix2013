@@ -90,7 +90,7 @@ public class OI {
         stopComp.whileHeld(new StopCompressor());
         shoot = new JoystickButton(buttonStick, 5);
         shoot.whenPressed(new ShootAtMaxSpeed(5));
-        activeTrigger = new JoystickButton(buttonStick, 10);
+        activeTrigger = new JoystickButton(buttonStick, 4);
         activeTrigger.whenPressed(new ActivateTrigger(1));
         startComp = new JoystickButton(buttonStick, 8);
         startComp.whileHeld(new StartCompressor());
