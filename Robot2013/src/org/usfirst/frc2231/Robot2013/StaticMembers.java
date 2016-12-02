@@ -14,7 +14,7 @@ public class StaticMembers {
 	//PID Parameters
 	public static final double DISTANCE_PER_PULSE = 0.5;
 	public static final double ABSOLUTE_TOLERANCE_ROTATION =  10 / 1000.0;
-	public static final double ABSOLUTE_TOLERANCE_DISTANCE = 0.05;
+	public static final double ABSOLUTE_TOLERANCE_DISTANCE = 0.1 / 1000.0;
 	public static final double PERCENT_TOLERANCE = 10;		
 	public static final double OUT_PUT_RANGE_MAX = 0.4;
 	public static final double OUT_PUT_RANGE_MIN = -0.4;
@@ -23,19 +23,27 @@ public class StaticMembers {
 	public static final int DEFAULT_POV_VALUE = -1;
 	public static final int PULSE_SCALE = 360;
 	public static final int  DIRECTION_VALUE = 1;
-	public static double DriveP = 0.07;
-	public static double DriveI = 0.0;
-	public static double DriveD = 0.03;
+	public static double driveP = 80;
+	public static double driveI = 0.0;
+	public static double driveD = 500;
+	public static double driveF = 0.1;
+	public static double driveSetPoint = 2.2 / 1000.0;
 	
 	//Vision
-	public static final double ANGLE_TO_FLOUR = 28;
-	public static final double TARGET_HIEGHT = 1.24;
-	public static final double ROBOT_HIEGHT = 0.38;
-	public static double visionP = 2.000;
-	public static double visionI = 0.000;
+	public static final double ANGLE_TO_FLOUR = 30;
+	public static final double TARGET_HIEGHT = 1.90;
+	public static final double ROBOT_HIEGHT = 0.35;
+	public static final int HUE_LOW = 90;
+	public static final int HUE_HIGH = 140;
+	public static final int SATURATION_LOW = 98;
+	public static final int SATURATION_HIGH = 255;
+	public static final int VALUE_LOW = 130;
+	public static final int VALUE_HIGH = 255;
+	public static double visionP = 1.500;
+	public static double visionI = 0.060;
 	public static double visionD = 5.000;
-	public static double visionF = 0.20;
-	public static double visionSetPoint = -0.032;
+	public static double visionF = 0.25;
+	public static double visionSetPoint = -0.022;
 		
 	//Shooter
 	public static double ShooterP = 0.07;

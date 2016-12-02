@@ -52,41 +52,56 @@ public class DriveForwardByVision extends Command {
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {
-		RobotMap.visionSensor.refreshValues();
+	protected void initialize(){
+		Robot.driveTrain.changeTalonControlMode(TalonControlMode.Follower);
+		Robot.driveTrain.setTalonsReversedState(true);
 		RobotMap.visionSensor.setPIDVisionSourceType(PIDVisionSourceType.DistanceFromTarget);
-		RobotMap.driveTrainFirstLeft.setInverted(true);
-		Robot.driveTrain.changeTalonControlModeForward(TalonControlMode.Follower);
-		RobotMap.VisionLeftPIDController.setSetpoint(m_setPoint);
-		RobotMap.VisionLeftPIDController.enable();
+		RobotMap.visionSensor.refreshValues();		
+		RobotMap.VisionDistanceLeftPIDController.setSetpoint(m_setPoint);
+    	RobotMap.VisionDistanceRightPIDController.setSetpoint(m_setPoint);
+    	if(RobotMap.VisionDistanceLeftPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE) && RobotMap.VisionDistanceRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE)){
+    		return;
+    	}
+    	RobotMap.VisionDistanceLeftPIDController.enable();	
+    	RobotMap.VisionDistanceRightPIDController.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		RobotMap.visionSensor.refreshValues();
-		System.out.println("Vision, pid Get" + RobotMap.visionSensor.pidGet());
-		System.out.println("Vision, pid out put" + RobotMap.VisionLeftPIDController.get());
+		System.out.println("Vision error: " + RobotMap.VisionDistanceLeftPIDController.getError() +  " , " + RobotMap.VisionDistanceRightPIDController.getError());
+		System.out.println("vision, pidcontroller output: " + RobotMap.VisionDistanceLeftPIDController.get() + " , " + RobotMap.VisionDistanceRightPIDController.get());
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return RobotMap.VisionLeftPIDController.onTarget(Math.abs(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE));
+		return RobotMap.VisionDistanceLeftPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE) && RobotMap.VisionDistanceRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.driveTrain.changeTalonControlModeForward(TalonControlMode.PercentVbus);
-		System.out.println("On target");
-		RobotMap.driveTrainFirstLeft.setInverted(false);
-		RobotMap.VisionLeftPIDController.reset();
-		RobotMap.VisionLeftPIDController.disable();
-
+		RobotMap.visionSensor.refreshValues();
+    	System.out.println("pid Get" + RobotMap.visionSensor.pidGet());
+		RobotMap.VisionDistanceLeftPIDController.reset();
+    	RobotMap.VisionDistanceRightPIDController.reset();
+		RobotMap.VisionDistanceLeftPIDController.disable();
+		RobotMap.VisionDistanceRightPIDController.disable();
+		Robot.driveTrain.setTalonsReversedState(false);
+    	Robot.driveTrain.resetTalonControlMode();
+		System.out.println("Drived to traget");
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		end();
+    	System.out.println("pid Get" + RobotMap.visionSensor.pidGet());
+		RobotMap.VisionDistanceLeftPIDController.reset();
+    	RobotMap.VisionDistanceRightPIDController.reset();
+		RobotMap.VisionDistanceLeftPIDController.disable();
+		RobotMap.VisionDistanceRightPIDController.disable();
+    	Robot.driveTrain.resetTalonControlMode();
+		Robot.driveTrain.setTalonsReversedState(false);
+		System.out.println("Drive Forward By Vision Has Been Interupted");
 	}
 }

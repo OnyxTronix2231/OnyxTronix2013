@@ -58,8 +58,10 @@ public class RobotMap {
     public static ADXRS450_Gyro visionGyro;
     public static PIDController shooterPIDController;
 	// Vision PIDControllers
-	public static OnyxTronixPIDController VisionLeftPIDController;
-	public static OnyxTronixPIDController VisionRightPIDController;
+    public static OnyxTronixPIDController VisionRotateLeftPIDController;
+	public static OnyxTronixPIDController VisionRotateRightPIDController;
+	public static OnyxTronixPIDController VisionDistanceLeftPIDController;
+	public static OnyxTronixPIDController VisionDistanceRightPIDController;
 
 	// DriveTrain PIDControllers
 	public static OnyxTronixPIDController driveTrainLeftPIDController;
@@ -140,7 +142,7 @@ public class RobotMap {
         driveTrainLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
         */
         
-        driveTrainRightPIDController = new OnyxTronixPIDController(StaticMembers.DriveP, StaticMembers.DriveI,StaticMembers.DriveD, StaticMembers.visionF, driveTrainFirstRight, driveTrainFirstRight);
+        driveTrainRightPIDController = new OnyxTronixPIDController(StaticMembers.driveP, StaticMembers.driveI,StaticMembers.driveD, StaticMembers.visionF, driveTrainFirstRight, driveTrainFirstRight, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
         LiveWindow.addActuator("DriveTran", "SecondRightPIDController", driveTrainRightPIDController);
         driveTrainRightPIDController.setContinuous(false);
         driveTrainRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
@@ -149,17 +151,30 @@ public class RobotMap {
         /********************************* Vision PID *********************************/
         
         visionSensor = new VisionSensor(shooterCamera, StaticMembers.ANGLE_TO_FLOUR, StaticMembers.ROBOT_HIEGHT, StaticMembers.TARGET_HIEGHT);
-
-        VisionLeftPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstLeft);
-        LiveWindow.addActuator("Vision", "LeftPIDController", VisionLeftPIDController);
-        VisionLeftPIDController.setContinuous(false);
-        VisionLeftPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
-        VisionLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
+        visionSensor.initHSV(StaticMembers.HUE_LOW, StaticMembers.HUE_HIGH, StaticMembers.SATURATION_LOW, StaticMembers.SATURATION_HIGH, StaticMembers.VALUE_LOW, StaticMembers.VALUE_HIGH);;
         
-        VisionRightPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstRight);
-        LiveWindow.addActuator("Vision", "RightPIDController", VisionRightPIDController);
-        VisionRightPIDController.setContinuous(false);
-        VisionRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
-        VisionRightPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
+        VisionRotateLeftPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstLeft, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+        LiveWindow.addActuator("Vision", "LeftPIDController", VisionRotateLeftPIDController);
+        VisionRotateLeftPIDController.setContinuous(false);
+        VisionRotateLeftPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+        VisionRotateLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
+        
+        VisionRotateRightPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstRight, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+        LiveWindow.addActuator("Vision", "RightPIDController", VisionRotateRightPIDController);
+        VisionRotateRightPIDController.setContinuous(false);
+        VisionRotateRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+        VisionRotateRightPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
+        
+        VisionDistanceLeftPIDController = new OnyxTronixPIDController(StaticMembers.driveP, StaticMembers.driveI, StaticMembers.driveD, StaticMembers.driveF, visionSensor, driveTrainFirstLeft, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
+        LiveWindow.addActuator("Vision", "LeftPIDController", VisionRotateLeftPIDController);
+        VisionRotateLeftPIDController.setContinuous(false);
+        VisionRotateLeftPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
+        VisionRotateLeftPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);     
+        
+        VisionDistanceRightPIDController = new OnyxTronixPIDController(StaticMembers.driveP, StaticMembers.driveI, StaticMembers.driveD, StaticMembers.driveF, visionSensor, driveTrainFirstRight, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
+        LiveWindow.addActuator("Vision", "RightPIDController", VisionRotateRightPIDController);
+        VisionRotateRightPIDController.setContinuous(false);
+        VisionRotateRightPIDController.setAbsoluteTolerance(StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
+        VisionRotateRightPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);
     }
 }

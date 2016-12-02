@@ -73,7 +73,6 @@ public class DriveTrain extends Subsystem {
 
     }
     
-	//FirstRight,FirstLeft,SecondLeft talons will follow SecondRight talon which is the only talon that is connected to an encoder right now.
     public void changeControlModeToFollow(){
     	secondLeft.changeControlMode(TalonControlMode.Follower);
     	secondRight.changeControlMode(TalonControlMode.Follower);    	
@@ -87,33 +86,22 @@ public class DriveTrain extends Subsystem {
     public void setPIDSourceType(PIDSourceType sourceType){ // TODO: Add encoder
     	secondLeft.setPIDSourceType(sourceType);
     }
-    
-    public void changeTalonControlModeToRotate(TalonControlMode mode) {
+	
+	public void changeTalonControlMode(TalonControlMode mode) {
 		secondLeft.changeControlMode(mode);
 		secondRight.changeControlMode(mode);
+		//firstRight.changeControlMode(mode);
 		
 		if(mode == TalonControlMode.Follower){
 		secondLeft.set(firstLeft.getDeviceID());
 		secondRight.set(firstRight.getDeviceID());
-		}
-	}
-	
-	public void changeTalonControlModeForward(TalonControlMode mode) {
-		secondLeft.changeControlMode(mode);
-		secondRight.changeControlMode(mode);
-		firstRight.changeControlMode(mode);
-		
-		if(mode == TalonControlMode.Follower){
-		secondLeft.set(firstLeft.getDeviceID());
-		secondRight.set(firstLeft.getDeviceID());
-		firstRight.set(firstLeft.getDeviceID());
-
+		//firstRight.set(firstLeft.getDeviceID());
 		}
 	}
 	
 	//Because three talons follows one talon, one side of the robot drive needs to be inverted so the robot will be able to rotate.
 	public void setTalonsReversedState(boolean isReversed){
-		firstRight.setInverted(isReversed);
+		firstLeft.setInverted(isReversed);
 	}
 	
 	public double getMove(double degrees) {
