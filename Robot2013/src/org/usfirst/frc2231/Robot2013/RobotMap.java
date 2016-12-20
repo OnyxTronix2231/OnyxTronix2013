@@ -26,8 +26,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.vision.AxisCamera;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 import edu.wpi.first.wpilibj.vision.AxisCamera.Resolution;
-import FRC_Vision2016_newMethods_ft_team2231.OnyxTronixPIDController;
-import FRC_Vision2016_newMethods_ft_team2231.VisionSensor;
+import sensors.VisionSensor;
+import visionProcessing.OnyxTronixPIDController;
+import dataManipulation.Values;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -149,9 +150,11 @@ public class RobotMap {
         driveTrainRightPIDController.setOutputRange(StaticMembers.OUT_PUT_RANGE_MIN, StaticMembers.OUT_PUT_RANGE_MAX);  
         
         /********************************* Vision PID *********************************/
-        
-        visionSensor = new VisionSensor(shooterCamera, StaticMembers.ANGLE_TO_FLOUR, StaticMembers.ROBOT_HIEGHT, StaticMembers.TARGET_HIEGHT);
-        visionSensor.initHSV(StaticMembers.HUE_LOW, StaticMembers.HUE_HIGH, StaticMembers.SATURATION_LOW, StaticMembers.SATURATION_HIGH, StaticMembers.VALUE_LOW, StaticMembers.VALUE_HIGH);;
+        Values v = new Values(StaticMembers.HUE_LOW, StaticMembers.HUE_HIGH, StaticMembers.SATURATION_LOW, StaticMembers.SATURATION_HIGH, 
+        		StaticMembers.VALUE_LOW, StaticMembers.VALUE_HIGH, 
+        		StaticMembers.ANGLE_TO_FLOUR, StaticMembers.ROBOT_HIEGHT, StaticMembers.TARGET_HIEGHT, 
+        		StaticMembers.VERTICAL_APERTURE_ANGLE,StaticMembers.MIN_AREA, StaticMembers.MAX_AREA);
+        visionSensor = new VisionSensor(shooterCamera, v);
         
         VisionRotateLeftPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstLeft, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
         LiveWindow.addActuator("Vision", "LeftPIDController", VisionRotateLeftPIDController);

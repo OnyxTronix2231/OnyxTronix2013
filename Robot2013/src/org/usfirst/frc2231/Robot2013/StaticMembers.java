@@ -39,6 +39,9 @@ public class StaticMembers {
 	public static final int SATURATION_HIGH = 255;
 	public static final int VALUE_LOW = 130;
 	public static final int VALUE_HIGH = 255;
+	public static final double VERTICAL_APERTURE_ANGLE = 36.12;
+	public static final double MIN_AREA = 1000; //The min area(in pixels) of an object in the processing operation
+	public static final double MAX_AREA = 60000; // The max area(in pixels) of an object in the processing operation
 	public static double visionP = 1.500;
 	public static double visionI = 0.060;
 	public static double visionD = 5.000;

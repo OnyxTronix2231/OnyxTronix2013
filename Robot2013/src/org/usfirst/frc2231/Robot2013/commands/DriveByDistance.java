@@ -49,12 +49,9 @@ public class DriveByDistance extends Command {
     	
     	/*
     	 * //TODO: Add encoder
-    	RobotMap.driveTrainLeftPIDController.setSetpoint(m_setPoint);
-    	RobotMap.driveTrainLeftPIDController.enable();
+    	RobotMap.driveTrainLeftPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
     	*/ 	
-    	
-    	RobotMap.driveTrainRightPIDController.setSetpoint(m_setPoint);
-    	RobotMap.driveTrainRightPIDController.enable();
+    	RobotMap.driveTrainRightPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -64,7 +61,7 @@ public class DriveByDistance extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return 	//RobotMap.driveTrainLeftPIDController.onTarget() && //TODO: Use when there are two encoders.
-        		RobotMap.driveTrainRightPIDController.onTarget(StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
+        		RobotMap.driveTrainRightPIDController.onTarget();
     }
 
     // Called once after isFinished returns true
