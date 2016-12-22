@@ -52,8 +52,8 @@ public class CenterByVision extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println("Vision error: " + RobotMap.VisionRotateLeftPIDController.getError() +  " , " + RobotMap.VisionRotateRightPIDController.getError());
-		System.out.println("vision, pidcontroller output: " + RobotMap.VisionRotateLeftPIDController.get() + " , " + RobotMap.VisionRotateRightPIDController.get());		    }
-
+		System.out.println("vision, pidcontroller output: " + RobotMap.VisionRotateLeftPIDController.get() + " , " + RobotMap.VisionRotateRightPIDController.get());
+    }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	boolean isLeftOnTarget = RobotMap.VisionRotateLeftPIDController.onTarget();
@@ -66,10 +66,8 @@ public class CenterByVision extends Command {
     protected void end() {
     	System.out.println("pid Get" + RobotMap.visionSensor.pidGet());
     	RobotMap.visionSensor.stopProcessing();
-		RobotMap.VisionRotateLeftPIDController.reset();
-    	RobotMap.VisionRotateRightPIDController.reset();
-		RobotMap.VisionRotateLeftPIDController.disable();
-		RobotMap.VisionRotateRightPIDController.disable();
+    	RobotMap.VisionRotateLeftPIDController.stop();
+		RobotMap.VisionRotateRightPIDController.stop();
     	Robot.driveTrain.resetTalonControlMode();
     	RobotMap.VisionRotateLeftPIDController.disableWriting();
     	RobotMap.visionSensor.resetValues();
@@ -80,10 +78,8 @@ public class CenterByVision extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	RobotMap.visionSensor.stopProcessing();
-		RobotMap.VisionRotateLeftPIDController.reset();
-    	RobotMap.VisionRotateRightPIDController.reset();
-		RobotMap.VisionRotateLeftPIDController.disable();
-		RobotMap.VisionRotateRightPIDController.disable();
+    	RobotMap.VisionRotateLeftPIDController.stop();
+		RobotMap.VisionRotateRightPIDController.stop();
     	Robot.driveTrain.resetTalonControlMode();
     	RobotMap.VisionRotateLeftPIDController.disableWriting();
     	RobotMap.visionSensor.resetValues();

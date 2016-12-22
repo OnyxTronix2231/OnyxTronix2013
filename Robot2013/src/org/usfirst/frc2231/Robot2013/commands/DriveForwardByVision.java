@@ -56,8 +56,8 @@ public class DriveForwardByVision extends Command {
 		Robot.driveTrain.changeTalonControlMode(TalonControlMode.Follower);
 		Robot.driveTrain.setTalonsReversedState(true);
 		RobotMap.visionSensor.startProcessing(PIDVisionSourceType.DistanceFromTarget);
-		hasStarted = RobotMap.VisionRotateRightPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
-		hasStarted = RobotMap.VisionRotateLeftPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION) && hasStarted;
+		hasStarted = RobotMap.VisionDistanceLeftPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
+		hasStarted = RobotMap.VisionDistanceRightPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE) && hasStarted;
 	}
 
 	// Called repeatedly when this Command is scheduled to run

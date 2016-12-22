@@ -42,10 +42,10 @@ public class StaticMembers {
 	public static final double VERTICAL_APERTURE_ANGLE = 36.12;
 	public static final double MIN_AREA = 1000; //The min area(in pixels) of an object in the processing operation
 	public static final double MAX_AREA = 60000; // The max area(in pixels) of an object in the processing operation
-	public static double visionP = 1.500;
-	public static double visionI = 0.060;
-	public static double visionD = 5.000;
-	public static double visionF = 0.25;
+	public static double visionP = 0.500;
+	public static double visionI = 0.002;
+	public static double visionD = 20.000;
+	public static double visionF = 0.28;
 	public static double visionSetPoint = -0.022;
 		
 	//Shooter
