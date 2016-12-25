@@ -112,16 +112,21 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        RobotMap.driveTrainRightPIDController.setPID(SmartDashboard.getNumber("PID DriveP: "),
+       RobotMap.VisionDistanceLeftPIDController.setPID(SmartDashboard.getNumber("PID DriveP: "),
         		 SmartDashboard.getNumber("PID DriveI: "),
 				 SmartDashboard.getNumber("PID DriveD: "));
+       RobotMap.VisionDistanceRightPIDController.setPID(SmartDashboard.getNumber("PID DriveP: "),
+      		 SmartDashboard.getNumber("PID DriveI: "),
+				 SmartDashboard.getNumber("PID DriveD: "));
         //RobotMap.driveTrainLeftPIDController.setPID(p, i, d); //TODO: add encoder
-        RobotMap.VisionLeftPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
+        RobotMap.VisionRotateLeftPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
 				 SmartDashboard.getNumber("PID visionI: "),
 				 SmartDashboard.getNumber("PID visionD: "));
-        RobotMap.VisionRightPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
+        RobotMap.VisionRotateRightPIDController.setPID(SmartDashboard.getNumber("PID visionP: "),
 				 SmartDashboard.getNumber("PID visionI: "),
 				 SmartDashboard.getNumber("PID visionD: "));
+        
+        SmartDashboard.putString("Shooter command: " ,  shooter.getCurrentCommand().toString());
     }
 
     /**
