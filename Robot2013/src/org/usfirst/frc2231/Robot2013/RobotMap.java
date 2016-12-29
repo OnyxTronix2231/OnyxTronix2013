@@ -155,7 +155,7 @@ public class RobotMap {
         		StaticMembers.ANGLE_TO_FLOUR, StaticMembers.ROBOT_HIEGHT, StaticMembers.TARGET_HIEGHT, 
         		StaticMembers.VERTICAL_APERTURE_ANGLE,StaticMembers.MIN_AREA, StaticMembers.MAX_AREA);
         visionSensor = new VisionSensor(shooterCamera, v);
-        LiveWindow.addActuator("VisionSensor", "visionSensor", visionSensor);
+        LiveWindow.addSensor("DriveTrain", "VisionSensor", visionSensor);
         
         VisionRotateLeftPIDController = new OnyxTronixPIDController(StaticMembers.visionP, StaticMembers.visionI, StaticMembers.visionD, StaticMembers.visionF, visionSensor, driveTrainFirstLeft, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
         LiveWindow.addActuator("Vision", "LeftPIDController", VisionRotateLeftPIDController);
