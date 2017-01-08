@@ -10,13 +10,14 @@
 
 package org.usfirst.frc2231.Robot2013.commands;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Command;
 import visionProcessing.PIDVisionSourceType;
 
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.StaticMembers;
+
+import com.ctre.CANTalon.TalonControlMode;
 
 /**
  *

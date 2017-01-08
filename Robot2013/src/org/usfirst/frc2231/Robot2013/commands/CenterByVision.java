@@ -15,7 +15,8 @@ import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.StaticMembers;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 import visionProcessing.PIDVisionSourceType;
 /**
