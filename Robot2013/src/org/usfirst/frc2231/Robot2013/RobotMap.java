@@ -126,6 +126,7 @@ public class RobotMap {
         
         shooterCamera = new AxisCamera("10.22.31.12");
         shooterCamera.writeResolution(Resolution.k640x480);
+        CameraServer.getInstance().addAxisCamera("10.22.31.12");
         
         /********************************* Shooter PID *********************************/
         shooterPIDController = new PIDController(StaticMembers.ShooterP, StaticMembers.ShooterI, StaticMembers.ShooterD, shooterShootingWheel, shooterShootingWheel);

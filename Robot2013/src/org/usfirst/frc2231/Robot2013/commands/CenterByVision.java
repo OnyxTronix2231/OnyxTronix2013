@@ -45,15 +45,21 @@ public class CenterByVision extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.driveTrain.changeTalonControlMode(TalonControlMode.Follower);
-		RobotMap.visionSensor.startProcessing(PIDVisionSourceType.NormalizedDistanceFromCenter);
+		RobotMap.visionSensor.startProcessing(PIDVisionSourceType.NormalizedDistanceFromCenter, 2);
 		hasStarted = RobotMap.VisionRotateRightPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION);
 		hasStarted = RobotMap.VisionRotateLeftPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_ROTATION) && hasStarted;
     }
 
     // Called repeatedly when this Command is scheduled to run
+    int count = 0;
     protected void execute() {
-    	System.out.println("Vision error: " + RobotMap.VisionRotateLeftPIDController.getError() +  " , " + RobotMap.VisionRotateRightPIDController.getError());
-		System.out.println("vision, pidcontroller output: " + RobotMap.VisionRotateLeftPIDController.get() + " , " + RobotMap.VisionRotateRightPIDController.get());
+    	//if(count == 4){
+			System.out.println("Vision error: " + RobotMap.VisionRotateLeftPIDController.getError() +  " , " + RobotMap.VisionRotateRightPIDController.getError());
+			System.out.println("vision, pidcontroller output: " + RobotMap.VisionRotateLeftPIDController.get() + " , " + RobotMap.VisionRotateRightPIDController.get());
+			//count = 0;
+    	//}
+		//count ++;
+
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
