@@ -77,7 +77,6 @@ public class CenterByVision extends Command {
 		RobotMap.VisionRotateRightPIDController.stop();
     	Robot.driveTrain.resetTalonControlMode();
     	RobotMap.VisionRotateLeftPIDController.disableWriting();
-    	RobotMap.visionSensor.resetValues();
 		System.out.println("centered by vision");
     }
 
@@ -89,7 +88,6 @@ public class CenterByVision extends Command {
 		RobotMap.VisionRotateRightPIDController.stop();
     	Robot.driveTrain.resetTalonControlMode();
     	RobotMap.VisionRotateLeftPIDController.disableWriting();
-    	RobotMap.visionSensor.resetValues();
     	System.out.println("center by vision has been interrupted");
     }
 }
