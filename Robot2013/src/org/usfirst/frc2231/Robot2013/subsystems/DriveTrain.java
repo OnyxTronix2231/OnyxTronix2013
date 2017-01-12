@@ -15,9 +15,10 @@ import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.StaticMembers;
 import org.usfirst.frc2231.Robot2013.commands.DriveWithJoystick;
 
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;

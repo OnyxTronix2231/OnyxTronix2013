@@ -10,13 +10,14 @@
 
 package org.usfirst.frc2231.Robot2013.commands;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Command;
 import visionProcessing.PIDVisionSourceType;
 
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.StaticMembers;
+
+import com.ctre.CANTalon.TalonControlMode;
 
 /**
  *
@@ -55,7 +56,7 @@ public class DriveForwardByVision extends Command {
 	protected void initialize(){
 		Robot.driveTrain.changeTalonControlMode(TalonControlMode.Follower);
 		Robot.driveTrain.setTalonsReversedState(true);
-		RobotMap.visionSensor.startProcessing(PIDVisionSourceType.DistanceFromTarget);
+		RobotMap.visionSensor.startProcessing(PIDVisionSourceType.DistanceFromTarget, 10);
 		hasStarted = RobotMap.VisionDistanceLeftPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE);
 		hasStarted = RobotMap.VisionDistanceRightPIDController.init(m_setPoint, StaticMembers.ABSOLUTE_TOLERANCE_DISTANCE) && hasStarted;
 	}
