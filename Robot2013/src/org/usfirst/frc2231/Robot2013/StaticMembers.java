@@ -27,12 +27,12 @@ public class StaticMembers {
 	public static double driveI = 0.0;
 	public static double driveD = 500;
 	public static double driveF = 0.1;
-	public static double driveSetPoint = 2.2 / 1000.0;
+	public static double driveSetPoint = 0 / 1000.0;
 	
 	//Vision
-	public static final double ANGLE_TO_FLOUR = 30;
-	public static final double TARGET_HIEGHT = 1.90;
-	public static final double ROBOT_HIEGHT = 0.35;
+	public static final double ANGLE_TO_FLOUR = 32;
+	public static final double TARGET_HIEGHT = 0.83;
+	public static final double ROBOT_HIEGHT = 0.38;
 	public static final int HUE_LOW = 78;
 	public static final int HUE_HIGH = 129;
 	public static final int SATURATION_LOW = 91;

@@ -14,8 +14,9 @@ package org.usfirst.frc2231.Robot2013.subsystems;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 import org.usfirst.frc2231.Robot2013.commands.PitchWithJoystick;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PIDController;
