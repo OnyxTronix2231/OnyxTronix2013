@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
 
-import visionProcessing.PIDVisionSourceType;
+import sensors.PIDVisionSourceType;
 
 /**
  *
@@ -40,13 +40,19 @@ public class PrintVisionDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.visionSensor.startProcessing(PIDVisionSourceType.DistanceFromTarget, 2);
+    	//RobotMap.visionSensor.startProcessing(PIDVisionSourceType.DistanceFromTarget, 2);
+    	
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//System.out.println("Distance: " + RobotMap.visionSensor.pidGet());
-    	System.out.println("Acceleration: " + RobotMap.driveTrainCameraAccelerometer.getAcceleration());
+    	System.out.println("X: " + RobotMap.accelometer.getX());
+    	System.out.println("Y: " + RobotMap.accelometer.getY());
+    	System.out.println("Z: " + RobotMap.accelometer.getZ());
+    	
+    	System.out.println(Math.toDegrees(Math.atan(RobotMap.accelometer.getZ() / RobotMap.accelometer.getY())));
     }
 
     // Make this return true when this Command no longer needs to run execute()

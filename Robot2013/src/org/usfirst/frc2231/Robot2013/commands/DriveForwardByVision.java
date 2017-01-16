@@ -11,7 +11,7 @@
 package org.usfirst.frc2231.Robot2013.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import visionProcessing.PIDVisionSourceType;
+import sensors.PIDVisionSourceType;
 
 import org.usfirst.frc2231.Robot2013.Robot;
 import org.usfirst.frc2231.Robot2013.RobotMap;
