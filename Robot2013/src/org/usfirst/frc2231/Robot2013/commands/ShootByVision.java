@@ -41,9 +41,9 @@ public class ShootByVision extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new FindVisionTraget());
-    	addSequential(new CenterByVision(StaticMembers.visionSetPoint));
-    	addSequential(new DriveForwardByVision(StaticMembers.driveSetPoint));
+    	addSequential(new FindVisionTraget(2));
+    	addSequential(new CenterByVision(StaticMembers.visionSetPoint, 2));
+    	addSequential(new DriveForwardByVision(StaticMembers.driveSetPoint, 2));
     	//addSequential(new CenterByVision(StaticMembers.visionSetPoint));
     	//addSequential(new ShootAtMaxSpeed(4));
     	//addSequential(new ActivateTrigger(1));
